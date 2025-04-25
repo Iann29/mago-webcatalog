@@ -1,10 +1,18 @@
 import React from 'react';
 import useMediaQuery from '../../hooks/useMediaQuery';
 
-const Title: React.FC = () => {
+interface TitleProps {
+  hatSizeDesktop?: string | number;
+  hatSizeMobile?: string | number;
+}
+
+const Title: React.FC<TitleProps> = ({ 
+  hatSizeDesktop = '190px', 
+  hatSizeMobile = '90px' 
+}) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   return (
-    <div className="relative" style={{ marginTop: isDesktop ? '50px' : '35px' }}>
+    <div className="relative" style={{ marginTop: isDesktop ? '50px' : '40px' }}>
       <div className="relative inline-block">
         <h1 className="catalog-title md:text-[7.5rem]" style={{ fontSize: isDesktop ? '7.5rem' : '55px' }}>CATÁLOGO</h1>
         <img 
@@ -12,10 +20,10 @@ const Title: React.FC = () => {
           alt="Chapéu" 
           className="absolute" 
           style={{
-            top: isDesktop ? '-45px' : '-25px',
-            right: isDesktop ? '15px' : '10px',
-            width: isDesktop ? '80px' : '50px',
-            transform: 'rotate(-8.94deg)',
+            top: isDesktop ? '-80px' : '-36px',
+            right: isDesktop ? '-53px' : '-25px',
+            width: isDesktop ? hatSizeDesktop : hatSizeMobile,
+            transform: 'rotate(-1.94deg)',
             filter: 'drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.5))'
           }}
         />

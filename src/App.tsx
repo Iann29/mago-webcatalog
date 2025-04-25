@@ -14,7 +14,7 @@ function App() {
       {/* Container principal de conteúdo */}
       <div className="content-container w-full min-h-screen flex flex-col items-center fade-in">
         {/* Componentes da página home */}
-        <Title />
+        <Title/>
         {/* Adicionar futuros componentes aqui */}
         {/* <MidStart /> */}
       </div>

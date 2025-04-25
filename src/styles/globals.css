@@ -90,3 +90,28 @@ body {
     transform: translateY(0);
   }
 }
+
+/* Animação para o chapéu */
+@keyframes hatAppear {
+  0% {
+    opacity: 0;
+    transform: translate(100px, -100px) rotate(45deg) scale(0.5);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-10px, 10px) rotate(-10deg) scale(1.2);
+  }
+  45% {
+    transform: translate(5px, -5px) rotate(5deg) scale(0.95);
+  }
+  60% {
+    transform: translate(-3px, 3px) rotate(-3deg) scale(1.05);
+  }
+  75% {
+    transform: translate(2px, -2px) rotate(1deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0) rotate(-1.94deg) scale(1);
+  }
+}

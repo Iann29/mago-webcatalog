@@ -10,7 +10,7 @@ const Intro: React.FC = () => {
       style={{ 
         marginTop: '100px',
         textAlign: 'left',
-        paddingLeft: isDesktop ? '0px' : '40px',
+        marginLeft: isDesktop ? '-250px' : '70px',
         maxWidth: '800px',
         width: '100%',
         fontFamily: '"Poppins", sans-serif',

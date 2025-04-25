@@ -12,7 +12,7 @@ function App() {
       <TextureOverlay />
       
       {/* Container principal de conteúdo */}
-      <div className="content-container w-full min-h-screen flex flex-col items-center fade-in">
+      <div className="content-container w-full min-h-screen flex flex-col items-center fade-in" style={{ overflowX: 'hidden' }}>
         {/* Componentes da página home */}
         <Title/>
         <Intro />

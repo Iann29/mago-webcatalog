@@ -115,3 +115,19 @@ body {
     transform: translate(0) rotate(-1.94deg) scale(1);
   }
 }
+
+/* Animação pulse para a seta de rolagem */
+@keyframes pulse {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(5px) scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

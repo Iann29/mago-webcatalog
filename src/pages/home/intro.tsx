@@ -10,6 +10,14 @@ interface IntroProps {
   beesTopMobile?: number | string;
   beesRightMobile?: number;
   beesBottomMobile?: number;
+  
+  // Propriedades para a seta de rolagem
+  arrowSizeDesktop?: number;
+  arrowSizeMobile?: number;
+  arrowBottomDesktop?: number;
+  arrowBottomMobile?: number;
+  arrowLeftDesktop?: number | string;
+  arrowLeftMobile?: number | string;
 }
 
 const Intro: React.FC<IntroProps> = ({
@@ -20,7 +28,15 @@ const Intro: React.FC<IntroProps> = ({
   // Valores padrão para o posicionamento das abelhas no mobile
   beesTopMobile = 'auto',
   beesRightMobile = 30,
-  beesBottomMobile = -180
+  beesBottomMobile = -180,
+  
+  // Valores padrão para a seta de rolagem
+  arrowSizeDesktop = 80,
+  arrowSizeMobile = 50,
+  arrowBottomDesktop = -300,
+  arrowBottomMobile = -250,
+  arrowLeftDesktop = 'calc(50% - 410px)',
+  arrowLeftMobile = 'calc(50% - 200px)'
 }) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   
@@ -80,6 +96,32 @@ const Intro: React.FC<IntroProps> = ({
           opacity: 0
         }}
       />
+      
+      {/* Seta de rolagem SVG */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: isDesktop ? `${arrowBottomDesktop}px` : `${arrowBottomMobile}px`,
+          left: isDesktop ? arrowLeftDesktop : arrowLeftMobile,
+          width: isDesktop ? `${arrowSizeDesktop}px` : `${arrowSizeMobile}px`,
+          height: isDesktop ? `${arrowSizeDesktop}px` : `${arrowSizeMobile}px`,
+          zIndex: 3,
+          animation: 'fadeIn 0.8s ease-in-out forwards, pulse 2s infinite',
+          animationDelay: '2s',
+          opacity: 0
+        }}
+      >
+        <svg 
+          width="100%" 
+          height="100%" 
+          viewBox="0 0 60 60" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect x="1" y="1" width="58" height="58" rx="29" stroke="white" strokeWidth="2" />
+          <path d="M30 20V40M30 40L20 30M30 40L40 30" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
     </div>
   );
 };

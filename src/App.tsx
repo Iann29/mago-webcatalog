@@ -2,6 +2,7 @@ import React from 'react';
 import Title from './pages/home/title';
 import Intro from './pages/home/intro';
 import Banca from './pages/home/banca';
+import WhiteSection from './pages/home/whiteSection';
 // Importar futuros componentes aqui
 import './styles/globals.css';
 
@@ -15,6 +16,9 @@ function App() {
         <Title/>
         <Intro />
         <Banca />
+        <WhiteSection>
+          {/* Conteúdo da seção branca vai aqui */}
+        </WhiteSection>
         {/* Adicionar futuros componentes aqui */}
       </div>
     </div>

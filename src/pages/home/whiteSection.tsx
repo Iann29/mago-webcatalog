@@ -28,6 +28,20 @@ interface WhiteSectionProps {
   brasilTopTablet?: string | number;
   brasilTopMobile?: string | number;
   
+  // Propriedades para o texto "A MAIOR DO BRASIL"
+  textTopDesktop?: string | number;
+  textTopTablet?: string | number;
+  textTopMobile?: string | number;
+  textRightDesktop?: string | number;
+  textRightTablet?: string | number;
+  textRightMobile?: string | number;
+  textSizeDesktop?: string | number;
+  textSizeTablet?: string | number;
+  textSizeMobile?: string | number;
+  brasilTextSizeDesktop?: string | number;
+  brasilTextSizeTablet?: string | number;
+  brasilTextSizeMobile?: string | number;
+  
   // Conteúdo do componente
   children?: React.ReactNode;
 }
@@ -61,7 +75,25 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
   // Valores padrão para a imagem do Brasil - mobile
   brasilSizeMobile = '200px',
   brasilLeftMobile = '50px',
-  brasilTopMobile = '90px',  
+  brasilTopMobile = '90px',
+  
+  // Valores padrão para o texto "A MAIOR DO BRASIL" - desktop
+  textTopDesktop = '35px',
+  textRightDesktop = '120px',
+  textSizeDesktop = '2.5rem',
+  brasilTextSizeDesktop = '3.2rem',
+  
+  // Valores padrão para o texto "A MAIOR DO BRASIL" - tablet
+  textTopTablet = '25px',
+  textRightTablet = '100px',
+  textSizeTablet = '2rem',
+  brasilTextSizeTablet = '2.6rem',
+  
+  // Valores padrão para o texto "A MAIOR DO BRASIL" - mobile
+  textTopMobile = '140px',
+  textRightMobile = '50px',
+  textSizeMobile = '2rem',
+  brasilTextSizeMobile = '2rem',  
   
   // Conteúdo do componente (children)
   children
@@ -98,6 +130,42 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
           position: 'relative' // Para posicionamento absoluto da imagem do Brasil
         }}
       >
+        {/* Texto "A MAIOR DO BRASIL" */}
+        <div
+          style={{
+            position: 'absolute',
+            top: isDesktop ? textTopDesktop : (isTablet ? textTopTablet : textTopMobile),
+            right: isDesktop ? textRightDesktop : (isTablet ? textRightTablet : textRightMobile),
+            zIndex: 2,
+            textAlign: 'left',
+            fontFamily: '"Gasoek One", sans-serif',
+            fontWeight: 400,
+            lineHeight: 1
+          }}
+        >
+          <div 
+            style={{ 
+              fontSize: isDesktop ? textSizeDesktop : (isTablet ? textSizeTablet : textSizeMobile),
+              color: '#6F278B',
+              marginBottom: '0.1em'
+            }}
+          >
+            A MAIOR DO
+          </div>
+          <div 
+            style={{
+              fontSize: isDesktop ? brasilTextSizeDesktop : (isTablet ? brasilTextSizeTablet : brasilTextSizeMobile),
+              background: 'linear-gradient(90deg, #47BCFF 0%, #2BC94E 50%, #FFEC25 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: 'bold'
+            }}
+          >
+            BRASIL
+          </div>
+        </div>
+        
         {/* Imagem do Brasil */}
         <img 
           src="/brasil.png" 

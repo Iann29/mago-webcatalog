@@ -42,6 +42,14 @@ interface WhiteSectionProps {
   brasilTextSizeTablet?: string | number;
   brasilTextSizeMobile?: string | number;
   
+  // Propriedades para o efeito de blur por trás do texto
+  blurOpacityDesktop?: number;
+  blurOpacityTablet?: number;
+  blurOpacityMobile?: number;
+  blurIntensityDesktop?: number;
+  blurIntensityTablet?: number;
+  blurIntensityMobile?: number;
+  
   // Conteúdo do componente
   children?: React.ReactNode;
 }
@@ -90,10 +98,22 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
   brasilTextSizeTablet = '2.6rem',
   
   // Valores padrão para o texto "A MAIOR DO BRASIL" - mobile
-  textTopMobile = '140px',
+  textTopMobile = '145px',
   textRightMobile = '50px',
   textSizeMobile = '2rem',
-  brasilTextSizeMobile = '2rem',  
+  brasilTextSizeMobile = '2rem',
+  
+  // Valores padrão para o efeito de blur - desktop
+  blurOpacityDesktop = 0.7,
+  blurIntensityDesktop = 10,
+  
+  // Valores padrão para o efeito de blur - tablet
+  blurOpacityTablet = 0.7,
+  blurIntensityTablet = 8,
+  
+  // Valores padrão para o efeito de blur - mobile
+  blurOpacityMobile = 1,
+  blurIntensityMobile = 11,  
   
   // Conteúdo do componente (children)
   children
@@ -130,13 +150,32 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
           position: 'relative' // Para posicionamento absoluto da imagem do Brasil
         }}
       >
-        {/* Texto "A MAIOR DO BRASIL" */}
+        {/* Efeito de blur atrás do texto */}
         <div
           style={{
             position: 'absolute',
             top: isDesktop ? textTopDesktop : (isTablet ? textTopTablet : textTopMobile),
             right: isDesktop ? textRightDesktop : (isTablet ? textRightTablet : textRightMobile),
             zIndex: 2,
+            backgroundColor: 'white',
+            padding: '20px',
+            paddingTop: '15px',
+            paddingBottom: '15px',
+            borderRadius: '30px',
+            opacity: isDesktop ? blurOpacityDesktop : (isTablet ? blurOpacityTablet : blurOpacityMobile),
+            filter: `blur(${isDesktop ? blurIntensityDesktop : (isTablet ? blurIntensityTablet : blurIntensityMobile)}px)`,
+            width: '200px',
+            height: '80px'
+          }}
+        ></div>
+        
+        {/* Texto "A MAIOR DO BRASIL" */}
+        <div
+          style={{
+            position: 'absolute',
+            top: isDesktop ? textTopDesktop : (isTablet ? textTopTablet : textTopMobile),
+            right: isDesktop ? textRightDesktop : (isTablet ? textRightTablet : textRightMobile),
+            zIndex: 3, // Aumentei o z-index para ficar acima do blur
             textAlign: 'left',
             fontFamily: '"Gasoek One", sans-serif',
             fontWeight: 400,

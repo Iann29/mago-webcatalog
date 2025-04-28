@@ -50,7 +50,7 @@ const Intro: React.FC<IntroProps> = ({
       style={{ 
         marginTop: '100px',
         textAlign: 'left',
-        marginLeft: isDesktop ? '-250px' : '70px',
+        marginLeft: isDesktop ? '-250px' : '75px',
         maxWidth: '800px',
         width: '100%',
         fontFamily: '"Poppins", sans-serif',

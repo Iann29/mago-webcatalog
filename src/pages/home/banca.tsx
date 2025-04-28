@@ -18,8 +18,8 @@ const Banca: React.FC<BancaProps> = ({
   widthDesktop = '50%',
   marginRightDesktop = '100px',
   // Valores padrão para mobile
-  marginTopMobile = '250px',
-  widthMobile = '90%',
+  marginTopMobile = '35px',
+  widthMobile = '65%',
   marginRightMobile = '-100px'
 }) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');

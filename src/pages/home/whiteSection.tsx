@@ -17,6 +17,17 @@ interface WhiteSectionProps {
   marginTopTablet?: string | number;
   marginTopMobile?: string | number;
   
+  // Propriedades para a imagem do Brasil
+  brasilSizeDesktop?: string | number;
+  brasilSizeTablet?: string | number;
+  brasilSizeMobile?: string | number;
+  brasilLeftDesktop?: string | number;
+  brasilLeftTablet?: string | number;
+  brasilLeftMobile?: string | number;
+  brasilTopDesktop?: string | number;
+  brasilTopTablet?: string | number;
+  brasilTopMobile?: string | number;
+  
   // Conteúdo do componente
   children?: React.ReactNode;
 }
@@ -36,6 +47,21 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
   heightMobile = '400px',
   borderRadiusMobile = '30px',
   marginTopMobile = '-68px',
+  
+  // Valores padrão para a imagem do Brasil - desktop
+  brasilSizeDesktop = '180px',
+  brasilLeftDesktop = '60px',
+  brasilTopDesktop = '50px',
+  
+  // Valores padrão para a imagem do Brasil - tablet
+  brasilSizeTablet = '140px',
+  brasilLeftTablet = '40px',
+  brasilTopTablet = '40px',
+  
+  // Valores padrão para a imagem do Brasil - mobile
+  brasilSizeMobile = '200px',
+  brasilLeftMobile = '50px',
+  brasilTopMobile = '90px',  
   
   // Conteúdo do componente (children)
   children
@@ -68,10 +94,30 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
           boxShadow: '0px -4px 20px rgba(0, 0, 0, 0.1)',
           // Certifique-se de que o texto será escuro contra o fundo branco
           color: '#333333',
-          padding: isDesktop ? '40px' : (isTablet ? '30px' : '20px')
+          padding: isDesktop ? '40px' : (isTablet ? '30px' : '20px'),
+          position: 'relative' // Para posicionamento absoluto da imagem do Brasil
         }}
       >
-        {children}
+        {/* Imagem do Brasil */}
+        <img 
+          src="/brasil.png" 
+          alt="Mapa do Brasil" 
+          style={{
+            position: 'absolute',
+            top: isDesktop ? brasilTopDesktop : (isTablet ? brasilTopTablet : brasilTopMobile),
+            left: isDesktop ? brasilLeftDesktop : (isTablet ? brasilLeftTablet : brasilLeftMobile),
+            width: isDesktop ? brasilSizeDesktop : (isTablet ? brasilSizeTablet : brasilSizeMobile),
+            height: 'auto',
+            objectFit: 'contain',
+            zIndex: 1,
+            opacity: 0.8 // Um pouco de transparência para não se destacar demais
+          }}
+        />
+        
+        {/* Conteúdo principal */}
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          {children}
+        </div>
       </div>
     </div>
   );

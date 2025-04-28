@@ -30,9 +30,9 @@ const Intro: React.FC<IntroProps> = ({
   beeSizeDesktop = '500px',
   // Valores padrão para o posicionamento das abelhas no mobile
   beesTopMobile = 'auto',
-  beesRightMobile = 30,
+  beesRightMobile = 45,
   beesBottomMobile = -45,
-  beeSizeMobile = '120px',
+  beeSizeMobile = '93px',
   
   // Valores padrão para a seta de rolagem
   arrowSizeDesktop = 80,
@@ -62,7 +62,7 @@ const Intro: React.FC<IntroProps> = ({
     >
       <h2 
         style={{ 
-          fontSize: isDesktop ? '2.5rem' : '1.25rem',
+          fontSize: isDesktop ? '2.5rem' : '1.1rem',
           fontWeight: 'bold',
           color: '#FFFFFF',
           marginBottom: '-5px',
@@ -73,7 +73,7 @@ const Intro: React.FC<IntroProps> = ({
       </h2>
       <p 
         style={{ 
-          fontSize: isDesktop ? '2.15rem' : '1rem',
+          fontSize: isDesktop ? '2.15rem' : '0.80rem',
           color: '#CDCDCD',
           lineHeight: '1.5',
           textAlign: 'left'

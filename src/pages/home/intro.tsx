@@ -1,5 +1,5 @@
 import React from 'react';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import useResponsive from '../../hooks/useResponsive';
 
 interface IntroProps {
   // Propriedades para posicionar as abelhas no desktop
@@ -7,6 +7,11 @@ interface IntroProps {
   beesTopDesktop?: number;
   beesBottomDesktop?: number | string;
   beeSizeDesktop?: number | string;
+  // Propriedades para posicionar as abelhas no tablet
+  beesRightTablet?: number;
+  beesTopTablet?: number | string;
+  beesBottomTablet?: number | string;
+  beeSizeTablet?: number | string;
   // Propriedades para posicionar as abelhas no mobile
   beesTopMobile?: number | string;
   beesRightMobile?: number;
@@ -15,10 +20,13 @@ interface IntroProps {
   
   // Propriedades para a seta de rolagem
   arrowSizeDesktop?: number;
+  arrowSizeTablet?: number;
   arrowSizeMobile?: number;
   arrowBottomDesktop?: number;
+  arrowBottomTablet?: number;
   arrowBottomMobile?: number;
   arrowLeftDesktop?: number | string;
+  arrowLeftTablet?: number | string;
   arrowLeftMobile?: number | string;
 }
 
@@ -28,6 +36,11 @@ const Intro: React.FC<IntroProps> = ({
   beesTopDesktop = 0,
   beesBottomDesktop = 'auto',
   beeSizeDesktop = '500px',
+  // Valores padrão para o posicionamento das abelhas no tablet
+  beesRightTablet = -150,
+  beesTopTablet = 'auto',
+  beesBottomTablet = -60,
+  beeSizeTablet = '300px',
   // Valores padrão para o posicionamento das abelhas no mobile
   beesTopMobile = 'auto',
   beesRightMobile = 45,
@@ -36,13 +49,16 @@ const Intro: React.FC<IntroProps> = ({
   
   // Valores padrão para a seta de rolagem
   arrowSizeDesktop = 80,
+  arrowSizeTablet = 60,
   arrowSizeMobile = 40,
   arrowBottomDesktop = -300,
+  arrowBottomTablet = -200,
   arrowBottomMobile = -110,
   arrowLeftDesktop = 'calc(50% - 410px)',
+  arrowLeftTablet = 'calc(50% - 300px)',
   arrowLeftMobile = 'calc(50% - 200px)'
 }) => {
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const { isMobile, isTablet, isDesktop } = useResponsive();
   
   return (
     <div 
@@ -50,7 +66,7 @@ const Intro: React.FC<IntroProps> = ({
       style={{ 
         marginTop: '100px',
         textAlign: 'left',
-        marginLeft: isDesktop ? '-250px' : '75px',
+        marginLeft: isDesktop ? '-250px' : (isTablet ? '-100px' : '75px'),
         maxWidth: '800px',
         width: '100%',
         fontFamily: '"Poppins", sans-serif',
@@ -62,7 +78,7 @@ const Intro: React.FC<IntroProps> = ({
     >
       <h2 
         style={{ 
-          fontSize: isDesktop ? '2.5rem' : '1.1rem',
+          fontSize: isDesktop ? '2.5rem' : (isTablet ? '1.8rem' : '1.1rem'),
           fontWeight: 'bold',
           color: '#FFFFFF',
           marginBottom: '-5px',
@@ -73,7 +89,7 @@ const Intro: React.FC<IntroProps> = ({
       </h2>
       <p 
         style={{ 
-          fontSize: isDesktop ? '2.15rem' : '0.80rem',
+          fontSize: isDesktop ? '2.15rem' : (isTablet ? '1.5rem' : '0.80rem'),
           color: '#CDCDCD',
           lineHeight: '1.5',
           textAlign: 'left'
@@ -89,10 +105,10 @@ const Intro: React.FC<IntroProps> = ({
         alt="Abelhas" 
         style={{
           position: 'absolute',
-          right: isDesktop ? `${beesRightDesktop}px` : `${beesRightMobile}px`,
-          top: isDesktop ? `${beesTopDesktop}px` : (beesTopMobile === 'auto' ? 'auto' : `${beesTopMobile}px`),
-          bottom: isDesktop ? (beesBottomDesktop === 'auto' ? 'auto' : `${beesBottomDesktop}px`) : `${beesBottomMobile}px`,
-          maxWidth: isDesktop ? beeSizeDesktop : beeSizeMobile,
+          right: isDesktop ? `${beesRightDesktop}px` : (isTablet ? `${beesRightTablet}px` : `${beesRightMobile}px`),
+          top: isDesktop ? `${beesTopDesktop}px` : (isTablet ? (beesTopTablet === 'auto' ? 'auto' : `${beesTopTablet}px`) : (beesTopMobile === 'auto' ? 'auto' : `${beesTopMobile}px`)),
+          bottom: isDesktop ? (beesBottomDesktop === 'auto' ? 'auto' : `${beesBottomDesktop}px`) : (isTablet ? (beesBottomTablet === 'auto' ? 'auto' : `${beesBottomTablet}px`) : `${beesBottomMobile}px`),
+          maxWidth: isDesktop ? beeSizeDesktop : (isTablet ? beeSizeTablet : beeSizeMobile),
           zIndex: 2,
           transition: 'all 0.3s ease-in-out',
           animation: 'fadeIn 0.8s ease-in-out forwards',
@@ -105,10 +121,10 @@ const Intro: React.FC<IntroProps> = ({
       <div
         style={{
           position: 'absolute',
-          bottom: isDesktop ? `${arrowBottomDesktop}px` : `${arrowBottomMobile}px`,
-          left: isDesktop ? arrowLeftDesktop : arrowLeftMobile,
-          width: isDesktop ? `${arrowSizeDesktop}px` : `${arrowSizeMobile}px`,
-          height: isDesktop ? `${arrowSizeDesktop}px` : `${arrowSizeMobile}px`,
+          bottom: isDesktop ? `${arrowBottomDesktop}px` : (isTablet ? `${arrowBottomTablet}px` : `${arrowBottomMobile}px`),
+          left: isDesktop ? arrowLeftDesktop : (isTablet ? arrowLeftTablet : arrowLeftMobile),
+          width: isDesktop ? `${arrowSizeDesktop}px` : (isTablet ? `${arrowSizeTablet}px` : `${arrowSizeMobile}px`),
+          height: isDesktop ? `${arrowSizeDesktop}px` : (isTablet ? `${arrowSizeTablet}px` : `${arrowSizeMobile}px`),
           zIndex: 3,
           animation: 'fadeIn 0.8s ease-in-out forwards, pulse 2s infinite',
           animationDelay: '2s',

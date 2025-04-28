@@ -1,17 +1,20 @@
 import React from 'react';
-import useMediaQuery from '../../hooks/useMediaQuery';
+import useResponsive from '../../hooks/useResponsive';
 
 interface WhiteSectionProps {
   // Propriedades para a altura da seção
   heightDesktop?: string | number;
+  heightTablet?: string | number;
   heightMobile?: string | number;
   
   // Propriedades para o border-radius das bordas superiores
   borderRadiusDesktop?: string | number;
+  borderRadiusTablet?: string | number;
   borderRadiusMobile?: string | number;
   
   // Propriedades para o posicionamento
   marginTopDesktop?: string | number;
+  marginTopTablet?: string | number;
   marginTopMobile?: string | number;
   
   // Conteúdo do componente
@@ -24,6 +27,11 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
   borderRadiusDesktop = '50px',
   marginTopDesktop = '100px',
   
+  // Valores padrão para tablet
+  heightTablet = '450px',
+  borderRadiusTablet = '40px',
+  marginTopTablet = '-20px',
+  
   // Valores padrão para mobile
   heightMobile = '400px',
   borderRadiusMobile = '30px',
@@ -32,13 +40,13 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
   // Conteúdo do componente (children)
   children
 }) => {
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const { isTablet, isDesktop } = useResponsive();
   
   return (
     <div 
       className="fade-in"
       style={{ 
-        marginTop: isDesktop ? marginTopDesktop : marginTopMobile,
+        marginTop: isDesktop ? marginTopDesktop : (isTablet ? marginTopTablet : marginTopMobile),
         width: '100%',
         animation: 'fadeIn 0.8s ease-in-out forwards',
         opacity: 0,
@@ -49,10 +57,10 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
       <div 
         style={{
           backgroundColor: '#ffffff',
-          minHeight: isDesktop ? heightDesktop : heightMobile,
+          minHeight: isDesktop ? heightDesktop : (isTablet ? heightTablet : heightMobile),
           width: '100%',
-          borderTopLeftRadius: isDesktop ? borderRadiusDesktop : borderRadiusMobile,
-          borderTopRightRadius: isDesktop ? borderRadiusDesktop : borderRadiusMobile,
+          borderTopLeftRadius: isDesktop ? borderRadiusDesktop : (isTablet ? borderRadiusTablet : borderRadiusMobile),
+          borderTopRightRadius: isDesktop ? borderRadiusDesktop : (isTablet ? borderRadiusTablet : borderRadiusMobile),
           // Deixamos as bordas inferiores retas
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
@@ -60,7 +68,7 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
           boxShadow: '0px -4px 20px rgba(0, 0, 0, 0.1)',
           // Certifique-se de que o texto será escuro contra o fundo branco
           color: '#333333',
-          padding: isDesktop ? '40px' : '20px'
+          padding: isDesktop ? '40px' : (isTablet ? '30px' : '20px')
         }}
       >
         {children}

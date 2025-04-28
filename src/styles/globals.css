@@ -131,3 +131,25 @@ body {
     opacity: 1;
   }
 }
+
+/* Animação para a banca */
+@keyframes bancaAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-15px) scale(1.02);
+  }
+  60% {
+    transform: translateY(10px) scale(0.98);
+  }
+  80% {
+    transform: translateY(-5px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

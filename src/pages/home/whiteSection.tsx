@@ -1,5 +1,6 @@
 import React from 'react';
 import useResponsive from '../../hooks/useResponsive';
+import { motion } from 'framer-motion';
 
 interface WhiteSectionProps {
   // Propriedades para a altura da seção
@@ -151,7 +152,10 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
         }}
       >
         {/* Efeito de blur atrás do texto */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: isDesktop ? blurOpacityDesktop : (isTablet ? blurOpacityTablet : blurOpacityMobile), scale: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           style={{
             position: 'absolute',
             top: isDesktop ? textTopDesktop : (isTablet ? textTopTablet : textTopMobile),
@@ -162,15 +166,14 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
             paddingTop: '15px',
             paddingBottom: '15px',
             borderRadius: '30px',
-            opacity: isDesktop ? blurOpacityDesktop : (isTablet ? blurOpacityTablet : blurOpacityMobile),
             filter: `blur(${isDesktop ? blurIntensityDesktop : (isTablet ? blurIntensityTablet : blurIntensityMobile)}px)`,
             width: '200px',
             height: '80px'
           }}
-        ></div>
+        ></motion.div>
         
         {/* Texto "A MAIOR DO BRASIL" */}
-        <div
+        <motion.div
           style={{
             position: 'absolute',
             top: isDesktop ? textTopDesktop : (isTablet ? textTopTablet : textTopMobile),
@@ -182,7 +185,10 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
             lineHeight: 1
           }}
         >
-          <div 
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             style={{ 
               fontSize: isDesktop ? textSizeDesktop : (isTablet ? textSizeTablet : textSizeMobile),
               color: '#6F278B',
@@ -190,8 +196,11 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
             }}
           >
             A MAIOR DO
-          </div>
-          <div 
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             style={{
               fontSize: isDesktop ? brasilTextSizeDesktop : (isTablet ? brasilTextSizeTablet : brasilTextSizeMobile),
               background: 'linear-gradient(90deg, #47BCFF 0%, #2BC94E 50%, #FFEC25 100%)',
@@ -202,13 +211,30 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
             }}
           >
             BRASIL
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         
         {/* Imagem do Brasil */}
-        <img 
+        <motion.img 
           src="/brasil.png" 
           alt="Mapa do Brasil" 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 0.8, y: 0 }}
+          transition={{ 
+            duration: 1,
+            delay: 0.2, 
+            ease: "easeOut"
+          }}
+          // Animação de flutuação suave e contínua
+          whileInView={{ 
+            y: [0, -10, 0],
+            transition: {
+              duration: 6,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut"
+            }
+          }}
           style={{
             position: 'absolute',
             top: isDesktop ? brasilTopDesktop : (isTablet ? brasilTopTablet : brasilTopMobile),
@@ -216,8 +242,7 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
             width: isDesktop ? brasilSizeDesktop : (isTablet ? brasilSizeTablet : brasilSizeMobile),
             height: 'auto',
             objectFit: 'contain',
-            zIndex: 1,
-            opacity: 0.8 // Um pouco de transparência para não se destacar demais
+            zIndex: 1
           }}
         />
         

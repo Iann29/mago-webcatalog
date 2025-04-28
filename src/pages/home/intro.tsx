@@ -6,10 +6,12 @@ interface IntroProps {
   beesRightDesktop?: number;
   beesTopDesktop?: number;
   beesBottomDesktop?: number | string;
+  beeSizeDesktop?: number | string;
   // Propriedades para posicionar as abelhas no mobile
   beesTopMobile?: number | string;
   beesRightMobile?: number;
   beesBottomMobile?: number;
+  beeSizeMobile?: number | string;
   
   // Propriedades para a seta de rolagem
   arrowSizeDesktop?: number;
@@ -25,10 +27,12 @@ const Intro: React.FC<IntroProps> = ({
   beesRightDesktop = -300,
   beesTopDesktop = 0,
   beesBottomDesktop = 'auto',
+  beeSizeDesktop = '500px',
   // Valores padrão para o posicionamento das abelhas no mobile
   beesTopMobile = 'auto',
   beesRightMobile = 30,
-  beesBottomMobile = -180,
+  beesBottomMobile = -45,
+  beeSizeMobile = '120px',
   
   // Valores padrão para a seta de rolagem
   arrowSizeDesktop = 80,
@@ -69,7 +73,7 @@ const Intro: React.FC<IntroProps> = ({
       </h2>
       <p 
         style={{ 
-          fontSize: isDesktop ? '2.15rem' : '1.20rem',
+          fontSize: isDesktop ? '2.15rem' : '1rem',
           color: '#CDCDCD',
           lineHeight: '1.5',
           textAlign: 'left'
@@ -88,7 +92,7 @@ const Intro: React.FC<IntroProps> = ({
           right: isDesktop ? `${beesRightDesktop}px` : `${beesRightMobile}px`,
           top: isDesktop ? `${beesTopDesktop}px` : (beesTopMobile === 'auto' ? 'auto' : `${beesTopMobile}px`),
           bottom: isDesktop ? (beesBottomDesktop === 'auto' ? 'auto' : `${beesBottomDesktop}px`) : `${beesBottomMobile}px`,
-          maxWidth: isDesktop ? '500px' : '140px',
+          maxWidth: isDesktop ? beeSizeDesktop : beeSizeMobile,
           zIndex: 2,
           transition: 'all 0.3s ease-in-out',
           animation: 'fadeIn 0.8s ease-in-out forwards',

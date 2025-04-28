@@ -31,7 +31,7 @@ const Title: React.FC<TitleProps> = ({
         />
       </div>
       <p className="subtitle-text absolute right-0 tracking-[0.02em]" style={{
-        fontSize: isDesktop ? '73px' : '33px',
+        fontSize: isDesktop ? '73px' : '32px',
         bottom: isDesktop ? '-35px' : '-20px'
       }}>
         Mago do Hayday

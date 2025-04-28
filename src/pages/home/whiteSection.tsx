@@ -27,7 +27,7 @@ const WhiteSection: React.FC<WhiteSectionProps> = ({
   // Valores padrão para mobile
   heightMobile = '400px',
   borderRadiusMobile = '30px',
-  marginTopMobile = '-72px',
+  marginTopMobile = '-68px',
   
   // Conteúdo do componente (children)
   children

@@ -1,32 +1,81 @@
+/* src/styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Definição de variáveis de cor globais */
 :root {
-  --primary-color: #6F278B;
-  --text-light: #ffffff;
-  --text-dark: #1a1a1a;
+  --primary-color: #6F278B; /* Roxo base */
+  --text-light: #ffffff;   /* Cor do texto principal (claro) */
+  --text-dark: #1a1a1a;    /* Cor de texto alternativa (escuro) */
 }
 
+/* Garante que o HTML e o Body possam ocupar 100% da altura */
+html {
+  height: 100%;
+}
+
+/* Estilos base para o corpo da página */
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--primary-color);
   color: var(--text-light);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  min-height: 100vh;
+  min-height: 100vh; /* Garante altura mínima da viewport */
+
+  /* Cor de fundo sólida (roxa) - Ficará por baixo da textura */
+  background-color: var(--primary-color);
+
+  /* --- Importante para o posicionamento do ::before --- */
+  position: relative; /* Cria um contexto de posicionamento para o pseudo-elemento */
+  z-index: 0; /* Estabelece um contexto de empilhamento base */
+  /* --- Fim da parte importante --- */
+
+  /* Evita scroll horizontal indesejado que pode surgir com alguns posicionamentos */
+  overflow-x: hidden;
 }
 
-/* Texture overlay removido - agora definido no componente TextureOverlay */
+/* --- Overlay de Textura com Opacidade usando Pseudo-elemento --- */
+body::before {
+  content: ''; /* Necessário para que o pseudo-elemento seja renderizado */
+  position: fixed; /* Fixo na viewport, não rola com a página */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Cobre toda a tela */
 
+  /* Caminho para a textura na pasta 'public' */
+  background-image: url('/texture.png');
+
+  /* Configuração da textura */
+  background-repeat: no-repeat; /* Não repetir */
+  background-size: cover; /* Cobrir a área */
+  background-position: center center; /* Centralizar a imagem */
+
+  /* Opacidade desejada para a textura */
+  opacity: 0.49;
+
+  /* Coloca o overlay atrás do conteúdo do body */
+  z-index: -1;
+
+  /* Opcional: Garante que não interfira com cliques (geralmente não necessário com z-index: -1) */
+  pointer-events: none;
+}
+/* --- Fim do Overlay de Textura --- */
+
+
+/* Container principal do conteúdo */
 .content-container {
   width: 100%;
-  min-height: 100vh;
-  z-index: 1;
-  position: relative;
+  min-height: 100vh; /* Garante que o conteúdo possa ter pelo menos a altura da tela */
+  /* --- Importante para ficar acima do overlay ::before --- */
+  position: relative; /* Necessário para que o z-index funcione corretamente */
+  z-index: 1; /* Garante que o conteúdo fique na frente do body::before */
+  /* --- Fim da parte importante --- */
 }
 
+/* Estilos específicos dos componentes (mantidos do seu código original) */
 .catalog-title {
   font-family: 'Gasoek One', sans-serif;
   font-weight: 400;
@@ -50,7 +99,7 @@ body {
   animation-delay: 0.3s;
 }
 
-/* Animations */
+/* Animações (mantidas do seu código original) */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
